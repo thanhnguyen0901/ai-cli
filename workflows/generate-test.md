@@ -1,10 +1,11 @@
 # Generate Test Workflow
 
 ## State
-- `ANALYZE TEST`
+- `ANALYZE + SOLUTION REVIEW`
 
 ## Purpose
 - Convert manual test intent into a structured, reviewable pre-generation plan.
+- Implement the combined-state artifact for logical `ANALYZE` and `SOLUTION REVIEW`.
 - Prepare for approval without generating code.
 
 ## Preconditions
@@ -30,14 +31,29 @@
    - `3. Explain in detail`
 8. Wait for explicit user selection.
 
+## Minimum Output Contract (Shared)
+- Every workflow response must include:
+  - `Workflow Name`
+  - `Current State`
+  - `Objective`
+  - `Inputs Consumed`
+  - `Analysis Summary`
+  - `Risks`
+  - `Proposed Action`
+  - `Required User Decision`
+  - `Next Allowed Commands`
+  - `Context Update Needed`
+- If a field is not applicable in this workflow, return it as `N/A` instead of omitting it.
+
 ## Output Contract
 - Required response sections:
-  - `State`
+  - `Current State`
   - `Test Analysis`
   - `Solution Proposal`
   - `Reuse vs New Code`
-  - `Open Risks/Unknowns`
-  - `Next Options`
+  - `Risks`
+  - `Required User Decision`
+  - `Next Allowed Commands`
 
 ## Guardrails
 - No code generation is allowed in this workflow.
@@ -46,6 +62,6 @@
 
 ## Exit Condition
 - Transition based on user choice:
-  - option `1` -> `APPROVE`
-  - option `2` -> `DISCUSS`
-  - option `3` -> `EXPLAIN`
+  - option `1` -> `APPROVE + GENERATE` workflow (`workflows/approve-generate.md`)
+  - option `2` -> `DISCUSS` (`workflows/discuss-solution.md`) then return to this workflow's solution review point
+  - option `3` -> `EXPLAIN` (`workflows/explain-solution.md`) then return to this workflow's solution review point

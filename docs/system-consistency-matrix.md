@@ -1,54 +1,56 @@
 # System Consistency Matrix
 
-## 1. Rule -> Workflow Governance Matrix
+## 1) Rules -> Workflows
 
-| Rule File | Governed Workflows | Enforcement Notes |
+| Rule | Governed Areas | Consistency Status |
 |---|---|---|
-| `rules/global-rules.md` | All workflows | Defines AI-CLI identity, anti-hallucination, structured responses, reuse-first, no free-chat behavior |
-| `rules/workflow-rules.md` | `setup-project`, `learn-codebase`, `generate-test`, `discuss-solution`, `explain-solution`, `approve-generate`, `update-context` | Defines canonical state machine and gating; currently stricter than workflow artifact granularity |
-| `rules/context-rules.md` | `learn-codebase`, `update-context`, post-generation memory updates | Defines context vs memory, freshness checks, conflict resolution, persistence policy |
-| `rules/code-generation-rules.md` | `approve-generate` and any generation step | Defines explicit approval precondition, reuse-first implementation, style/scope constraints |
+| `rules/global-rules.md` | All workflows | Aligned (canonical shared output contract in place) |
+| `rules/workflow-rules.md` | State transitions and combined-state model | Aligned |
+| `rules/context-rules.md` | Context/memory update governance | Aligned (required fields + confidence split) |
+| `rules/code-generation-rules.md` | Approval/generation behavior | Aligned |
 
-## 2. Workflow -> Template Support Matrix
+## 2) Menu -> Workflow Handling
 
-| Workflow | Template(s) Used | Coverage |
+| Menu Option | Handling Model | Implementation |
 |---|---|---|
-| `workflows/generate-test.md` | `templates/test-analysis-template.md`, `templates/solution-plan-template.md` | Analysis and pre-generation solution proposal |
-| `workflows/approve-generate.md` | `templates/codegen-checklist-template.md` | Pre-generation gate/checklist enforcement |
-| `workflows/update-context.md` | `templates/context-update-template.md` | Structured context/memory update record |
-| `workflows/discuss-solution.md` | (Indirect) `solution-plan-template` | Proposal delta updates and return to review options |
-| `workflows/explain-solution.md` | (Indirect) `solution-plan-template` | Expanded rationale over current proposal |
+| `1. Learn or Refresh Codebase` | Workflow artifact | `workflows/learn-codebase.md` |
+| `2. Generate Test From Manual Steps` | Workflow artifact | `workflows/generate-test.md` |
+| `3. Review Existing Automation Code` | Workflow artifact | `workflows/review-automation-code.md` |
+| `4. Update Project Context/Memory` | Workflow artifact | `workflows/update-context.md` |
+| `5. Explain Current Project Understanding` | Deterministic READY inline behavior | Explicitly defined in `main-menu.md` and `rules/workflow-rules.md` |
+| `6. Exit` | Menu control action | Explicit in `main-menu.md` |
 
-## 3. Workflow -> Context/Memory Update Matrix
+## 3) Workflows -> Templates
 
-| Workflow | Context Files Impacted | Memory Files Impacted | Notes |
+| Workflow | Template Dependencies | Status |
+|---|---|---|
+| `generate-test` | `test-analysis-template`, `solution-plan-template` | Aligned |
+| `approve-generate` | `codegen-checklist-template` | Aligned |
+| `update-context` | `context-update-template` | Aligned |
+| `review-automation-code` | framework review checklists | Aligned |
+
+## 4) Shared Output Contract Determinism
+
+| Contract Field | Global Rule | Workflow Minimum Contract |
+|---|---|---|
+| `Workflow Name` | Yes | Yes |
+| `Current State` | Yes | Yes |
+| `Objective` | Yes | Yes |
+| `Inputs Consumed` | Yes | Yes |
+| `Analysis Summary` | Yes | Yes |
+| `Risks` | Yes | Yes |
+| `Proposed Action` | Yes | Yes |
+| `Required User Decision` | Yes | Yes |
+| `Next Allowed Commands` | Yes | Yes |
+| `Context Update Needed` | Yes | Yes |
+
+## 5) Context-Update Governance Field Alignment
+
+| Field | rules/context-rules | workflows/update-context | template/context-update |
 |---|---|---|---|
-| `setup-project` | Read-only status checks | Read-only status checks | Reports presence/freshness risk |
-| `learn-codebase` | `context/*` (architecture, selectors, patterns, risks, etc.) | `memory/*` (summary, index, maps, style, history anchors) | Primary enrichment workflow |
-| `generate-test` | No direct write required | No direct write required | Produces analysis/plan artifacts pre-approval |
-| `discuss-solution` | Optional queued update via update-context | Optional queued update via update-context | Clarification persistence gate |
-| `explain-solution` | Typically none direct | Typically none direct | Returns to review options |
-| `approve-generate` | Optional post-generation update prompt | Optional post-generation update prompt | Handoff to update-context |
-| `update-context` | Direct structured updates | Direct structured updates | Conflict-aware persistence owner |
-
-## 4. Framework Guide -> Generation/Review Path Matrix
-
-| Framework Guides | Used In Generation | Used In Review | Notes |
-|---|---|---|---|
-| `frameworks/cypress/patterns.md` | Yes | Yes | Cypress mental model and anti-pattern controls |
-| `frameworks/cypress/commands.md` | Yes | Yes | Action-to-command mapping and retry guidance |
-| `frameworks/cypress/structure.md` | Yes | Yes | Placement and naming interpretation |
-| `frameworks/cypress/review-checklist.md` | Indirect | Yes | Quality gate for Cypress output |
-| `frameworks/playwright/patterns.md` | Yes | Yes | Locator-first async model and anti-pattern controls |
-| `frameworks/playwright/commands.md` | Yes | Yes | Action-to-command mapping and async correctness |
-| `frameworks/playwright/structure.md` | Yes | Yes | Placement and naming interpretation |
-| `frameworks/playwright/review-checklist.md` | Indirect | Yes | Quality gate for Playwright output |
-
-## 5. Entry and Control Flow Matrix
-
-| Layer | Primary File(s) | Role |
-|---|---|---|
-| Entry trigger | `start.md` | Defines `START` bootstrap contract and readiness response |
-| Runtime config | `config.md` | Defines configurable system behavior and safe defaults |
-| Menu control | `main-menu.md` | Defines explicit option-based operation and return-to-menu loop |
-| State engine | `workflows/*.md` + `rules/workflow-rules.md` | Defines state transitions, guards, and lifecycle behavior |
+| `Date` | Required | Required | Required |
+| `Source Files` | Required | Required | Required |
+| `Change Summary` | Required | Required | Required |
+| `Impact on Generation` | Required | Required | Required |
+| `Update Confidence` | Required | Required | Required |
+| `Evidence Confidence` | Optional | Optional | Optional |

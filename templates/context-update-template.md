@@ -6,6 +6,13 @@
 - `Triggered By`: (`learn` | `generate` | `manual update`)
 - `Authoring Mode`: `ai-cli`
 
+## Governance Required Fields
+- `Date`:
+- `Source Files`:
+- `Change Summary`:
+- `Impact on Generation`:
+- `Update Confidence`: (`high` | `medium` | `low`)
+
 ## Update Reason
 - `Why This Update Is Needed`:
 - `Workflow Stage That Produced It`:
@@ -14,7 +21,7 @@
 - `Primary Source Type`: (`codebase` | `user clarification` | `execution result`)
 - `Source Files / Inputs`:
 - `Evidence Summary`:
-- `Confidence`: (`high` | `medium` | `low`)
+- `Evidence Confidence`: (`high` | `medium` | `low`)
 
 ## Affected Files
 - `Context Files to Update`:

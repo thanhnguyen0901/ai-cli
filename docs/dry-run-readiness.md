@@ -1,39 +1,34 @@
 # Dry-Run Readiness
 
-## Current Readiness Status
-- Overall: `READY WITH MINOR FIXES`
+## Current Status
+- `READY WITH MINOR FIXES`
 
-## Can START be tested now?
-- Yes.
-- Reason: `start.md`, `config.md`, `setup-project` workflow, and `main-menu` behavior are defined with explicit load order and yes/no learning prompt.
+## START Dry-Run Readiness
+- Ready now.
+- Entry bootstrap contract and setup operational ownership are explicit.
 
-## Can learn-codebase be tested now?
-- Yes.
-- Reason: `workflows/learn-codebase.md` defines scan scope, extraction targets, stale-memory handling, and completion reporting.
+## Learn-Codebase Dry-Run Readiness
+- Ready now.
+- Learning scope, extraction targets, and update paths are defined and deterministic.
 
-## Can generate-test be tested now?
-- Yes, with caveats.
-- Reason: analysis and solution planning templates are integrated; discuss/explain/approve loop exists.
-- Caveat: state naming/granularity mismatch with canonical workflow rules may cause orchestration ambiguity.
+## Generate-Test Dry-Run Readiness
+- Ready now.
+- Combined-state flow and approval gate are explicit and enforced.
 
-## What must be fixed first (if anything)?
-1. Add or map a workflow for main-menu option 3 (`Review Existing Automation Code`).
-2. Align workflow artifacts with canonical state model (`ANALYZE`, `SOLUTION REVIEW`, `APPROVE`, `GENERATE`) or formally update rules to reflect intentional combined states.
+## Menu Routing Readiness
+- Ready now.
+- All menu options are deterministic:
+  - options 1/2/3/4 via workflow artifacts,
+  - option 5 via explicitly defined READY inline behavior,
+  - option 6 exit control.
 
-## Suggested Dry-Run Order
-1. Run `START` flow and verify load-status response sections.
-2. Choose `yes` for learn/refresh and validate LEARN completion report sections.
-3. Return to menu and run option 2 (`Generate Test From Manual Steps`) with a sample scenario.
-4. Validate template-shaped outputs for analysis and solution plan.
-5. Exercise discuss loop with selector/business clarifications.
-6. Exercise explain loop and confirm no code generation occurs.
-7. Provide explicit approval and validate checklist gate behavior.
-8. Validate post-generation prompt for context/memory update.
-9. Run update-context path and verify structured update fields and conflict handling.
+## Non-Blocking Improvement
+1. Update one wording line in `workflows/update-context.md` to explicitly reference `Update Confidence` and optional `Evidence Confidence`.
 
-## Practical Dry-Run Pass Criteria
-- No code generation before explicit approval.
-- Framework choice stays consistent per scenario.
-- Outputs remain structured and state-labeled.
-- Reuse-first reasoning is visible in proposals.
-- Context/memory updates are evidence-based and conflict-aware.
+## Suggested Dry-Run Sequence
+1. `START` bootstrap and setup handoff validation.
+2. Learn/refresh branch (`yes` then `no`) behavior validation.
+3. Option `2` analyze/solution/discuss/explain/approve path.
+4. Approval-gated generation validation.
+5. Option `4` context/memory update validation with required governance fields.
+6. Option `3` review workflow validation for both Cypress and Playwright files.

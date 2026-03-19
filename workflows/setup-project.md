@@ -7,6 +7,14 @@
 - Define system behavior immediately after `START`.
 - Confirm AI-CLI readiness, detect current knowledge state, and route to learn/refresh decision.
 
+## Operational Ownership
+- This workflow is the operational owner of `SETUP` state behavior.
+- It starts only after explicit handoff from `start.md` bootstrap contract.
+- It owns:
+  - learning/refresh prompt execution,
+  - existing memory/context operational checks,
+  - transition routing to `LEARN` or `READY`.
+
 ## Preconditions
 - `START` trigger received.
 - Bootstrap load order already executed: `config -> rules -> workflows -> frameworks -> context -> memory`.
@@ -42,13 +50,28 @@
 - Report that codebase remains source of truth and memory may be stale.
 - Transition directly to `READY` and show main menu.
 
+## Minimum Output Contract (Shared)
+- Every workflow response must include:
+  - `Workflow Name`
+  - `Current State`
+  - `Objective`
+  - `Inputs Consumed`
+  - `Analysis Summary`
+  - `Risks`
+  - `Proposed Action`
+  - `Required User Decision`
+  - `Next Allowed Commands`
+  - `Context Update Needed`
+- If a field is not applicable in this workflow, return it as `N/A` instead of omitting it.
+
 ## Output Contract
 - Required response sections:
-  - `State`
+  - `Current State`
   - `Load Status`
   - `Context/Memory Status`
   - `Learning Decision Prompt`
-  - `Next State`
+  - `Required User Decision`
+  - `Next Allowed Commands`
 
 ## Guardrails
 - Do not auto-run learning without explicit `yes`.

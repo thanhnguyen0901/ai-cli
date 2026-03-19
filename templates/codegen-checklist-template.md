@@ -25,4 +25,4 @@
 ## Generation Decision
 - `Checklist Status`: (`pass` | `blocked`)
 - `Blocking Items`:
-- `Next Action`: (`generate now` | `return to discuss/explain` | `request clarification`)
+- `Proposed Action`: (`generate now` | `return to discuss/explain` | `request clarification`)

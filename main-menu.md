@@ -12,17 +12,22 @@
 - `5. Explain Current Project Understanding`
 - `6. Exit`
 
-## Option Definitions
+## Option Definitions and Workflow Mapping
 - `1. Learn or Refresh Codebase`
   - Run learning scan to validate or refresh understanding of repository structure, patterns, and reusable assets.
+  - Workflow: `workflows/learn-codebase.md`.
 - `2. Generate Test From Manual Steps`
-  - Start test generation workflow: analyze steps, propose solution, discuss/explain if needed, require approval, then generate.
+  - Start combined pre-generation workflow: analysis plus solution review, then route to discuss/explain/approve.
+  - Workflow: `workflows/generate-test.md`.
 - `3. Review Existing Automation Code`
-  - Review specified existing test code for correctness, reuse opportunities, maintainability, and framework alignment.
+  - Review specified existing automation code for correctness, reuse opportunities, maintainability, and framework alignment.
+  - Workflow: `workflows/review-automation-code.md`.
 - `4. Update Project Context/Memory`
   - Apply structured updates to `context/` and `memory/` using verified code evidence and current decisions.
+  - Workflow: `workflows/update-context.md`.
 - `5. Explain Current Project Understanding`
   - Summarize current known architecture, patterns, reusable components, risks, and confidence level.
+  - Deterministic inline behavior: execute in `READY` mode (no workflow file transition) by synthesizing `context/` and `memory/` with codebase-as-source-of-truth constraints.
 - `6. Exit`
   - End current AI-CLI workflow loop and stop menu-driven operation.
 

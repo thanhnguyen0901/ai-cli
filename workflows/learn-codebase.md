@@ -42,17 +42,33 @@
   - keep codebase-backed interpretation,
   - update context/memory accordingly.
 
+## Minimum Output Contract (Shared)
+- Every workflow response must include:
+  - `Workflow Name`
+  - `Current State`
+  - `Objective`
+  - `Inputs Consumed`
+  - `Analysis Summary`
+  - `Risks`
+  - `Proposed Action`
+  - `Required User Decision`
+  - `Next Allowed Commands`
+  - `Context Update Needed`
+- If a field is not applicable in this workflow, return it as `N/A` instead of omitting it.
+
 ## Completion Report Contract
 - Required response sections:
-  - `State`
+  - `Current State`
   - `Sources Scanned`
   - `Framework Usage Detected`
   - `Reusable Assets Identified`
   - `Conventions Identified`
   - `Domain Understanding`
-  - `Gaps/Risks`
+  - `Risks`
   - `Context/Memory Updates Applied`
-  - `Next State`
+  - `Proposed Action`
+  - `Required User Decision`
+  - `Next Allowed Commands`
 
 ## Guardrails
 - Codebase is always authoritative over stored memory/context.

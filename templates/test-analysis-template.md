@@ -54,4 +54,4 @@
 ## Readiness for Solution Proposal
 - `Readiness Status`: (`ready` | `needs clarification`)
 - `Missing Inputs Before Solution Plan`:
-- `Recommended Next Action`: (`propose solution` | `ask clarification`)
+- `Proposed Action`: (`propose solution` | `ask clarification`)

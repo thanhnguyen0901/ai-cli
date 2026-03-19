@@ -61,6 +61,11 @@
   - `Source Files`
   - `Change Summary`
   - `Impact on Generation`
-  - `Confidence`
+  - `Update Confidence`
+- Optional source-quality field:
+  - `Evidence Confidence`
+- These fields must be explicitly enforced in:
+  - `workflows/update-context.md` output contract,
+  - `templates/context-update-template.md`.
 - Confidence levels must be explicit: `high`, `medium`, or `low`.
 - Low-confidence entries must include a follow-up rescan action.

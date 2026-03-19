@@ -28,16 +28,31 @@
 6. Ask whether clarification should be persisted to context/memory:
    - `Should this clarification be recorded in context/memory? (yes/no)`
 7. If `yes`, queue `UPDATE CONTEXT` after current review step.
-8. Return to `SOLUTION REVIEW` with refreshed options (`approve`, `discuss`, `explain`).
+8. Return to `ANALYZE + SOLUTION REVIEW` workflow (`workflows/generate-test.md`) at its solution review decision point.
+
+## Minimum Output Contract (Shared)
+- Every workflow response must include:
+  - `Workflow Name`
+  - `Current State`
+  - `Objective`
+  - `Inputs Consumed`
+  - `Analysis Summary`
+  - `Risks`
+  - `Proposed Action`
+  - `Required User Decision`
+  - `Next Allowed Commands`
+  - `Context Update Needed`
+- If a field is not applicable in this workflow, return it as `N/A` instead of omitting it.
 
 ## Output Contract
 - Required response sections:
-  - `State`
+  - `Current State`
   - `New Clarifications`
   - `Delta Summary`
   - `Updated Proposal Snapshot`
   - `Context/Memory Update Prompt`
-  - `Next Options`
+  - `Required User Decision`
+  - `Next Allowed Commands`
 
 ## Guardrails
 - Do not generate code in discussion workflow.
@@ -46,4 +61,4 @@
 
 ## Exit Condition
 - Updated solution review is presented.
-- Control returns to `SOLUTION REVIEW` decision point.
+- Control returns to `workflows/generate-test.md` review options.

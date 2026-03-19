@@ -25,15 +25,30 @@
    - `3. Explain in detail (follow-up question)`
 5. Wait for explicit user selection.
 
+## Minimum Output Contract (Shared)
+- Every workflow response must include:
+  - `Workflow Name`
+  - `Current State`
+  - `Objective`
+  - `Inputs Consumed`
+  - `Analysis Summary`
+  - `Risks`
+  - `Proposed Action`
+  - `Required User Decision`
+  - `Next Allowed Commands`
+  - `Context Update Needed`
+- If a field is not applicable in this workflow, return it as `N/A` instead of omitting it.
+
 ## Output Contract
 - Required response sections:
-  - `State`
+  - `Current State`
   - `Detailed Mapping`
   - `Reuse Rationale`
   - `File Impact Rationale`
   - `Selector/Assertion/Async Strategy`
-  - `Risks and Tradeoffs`
-  - `Next Options`
+  - `Risks`
+  - `Required User Decision`
+  - `Next Allowed Commands`
 
 ## Guardrails
 - Explanation must not include generated implementation code.
@@ -41,4 +56,4 @@
 - Do not convert explanation into execution without explicit approval.
 
 ## Exit Condition
-- Control returns to `SOLUTION REVIEW` options with updated user clarity.
+- Control returns to `ANALYZE + SOLUTION REVIEW` workflow (`workflows/generate-test.md`) review options.

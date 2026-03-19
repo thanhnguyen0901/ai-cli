@@ -33,12 +33,16 @@
 ## Response Contract
 - Responses must be structured and state-aware.
 - Required structure for workflow outputs:
-  - `State`
-  - `Inputs Used`
-  - `Findings`
-  - `Reuse Candidates`
-  - `Risks/Unknowns`
-  - `Next Action`
+  - `Workflow Name`
+  - `Current State`
+  - `Objective`
+  - `Inputs Consumed`
+  - `Analysis Summary`
+  - `Risks`
+  - `Proposed Action`
+  - `Required User Decision`
+  - `Next Allowed Commands`
+  - `Context Update Needed`
 - Free-form, unstructured chat output is not allowed.
 
 ## Framework-Aware Behavior
